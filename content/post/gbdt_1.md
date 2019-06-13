@@ -162,13 +162,13 @@ XGBoost是DMLC开源在Github的Gradient Boosting框架，主要作者是陈天�
 
 树学习的关键问题就是找到最优分割点。常见的方法是枚举所有可能的分割点，称之为 exact greedy algorithm。
 
-![4](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gdbt/4.png)
+![4](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gbdt/4.png)
 
 exact greedy algorithm计算量过大，而且当数据量较大没法全填入内存时，会很慢。因此xgboost引入了 approximate算法。
 
 该算法对于某个特征$X_k$，首先通过特征分布来确定若干值域分界点$\{s_{k1},s_{k2},\dots,s_{kl}\}$。然后根据这些值域分界点把样本分入桶中，对每个桶内的样本统计值$G,H$进行累加，记为分界点的统计量。最后在分界点集合上进行贪心查找，得到的结果就是最佳分裂点的近似。
 
-![5](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gdbt/5.png)
+![5](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gbdt/5.png)
 
 那么该如何寻找值域分界点$\{s_{k1},s_{k2},\dots,s_{kl}\}$呢？XGBoost中介绍了一种方法，叫**加权分位数略图 Weighted Quantile Sketch**。
 
@@ -186,7 +186,7 @@ $$
 $$
 其中，$s_{k1}=min_i\ x_{ik}, s_{kl}=max_i\ x_{ik}$。$\varepsilon$是采样率，因为$0<r_k(z)<1$，所以我们会得到$1/\varepsilon$个分界点。
 
-![6](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gdbt/6.png)
+![6](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gbdt/6.png)
 （该图未考虑权重$h$）
 
 ### 2.2 Sparsity-aware Split Finding
@@ -195,7 +195,7 @@ $$
 
 对于这些缺失值，xgboost将样本分类到默认分支上去，而默认分支是由non-missing value学习得到的。具体算法如下：
 
-![7](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gdbt/7.png)
+![7](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gbdt/7.png)
 
 由上可见，该算法**只考虑non-missing entries $I_k$**，因此计算复杂度是数据中的非缺失值个数的线性比值，对于稀疏数据来说，计算的很快。
 
