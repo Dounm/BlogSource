@@ -13,5 +13,9 @@ toc: true
 
 ---
 
-![1](C:\Users\oneflow\Desktop\OF\Blog\TheFarmOfDounm\resources\images\gdbt\gdbt_0\gdbt_0-1.png)
-
+![1](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gbdt/gbdt_0/gbdt_0-1.png)
+![2](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gbdt/gbdt_0/gbdt_0-2.png)
+![3](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gbdt/gbdt_0/gbdt_0-3.png)
+![4](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gbdt/gbdt_0/gbdt_0-4.png)
+![5](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gbdt/gbdt_0/gbdt_0-5.png)
+![6](https://raw.githubusercontent.com/Dounm/TheFarmOfDounm/master/resources/images/gbdt/gbdt_0/gbdt_0-6.png)
