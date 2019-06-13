@@ -7,15 +7,21 @@ weight: 50
 
 ---
 
-Hugo is a static site engine written in Go.
+# About Me
 
+---
 
-It makes use of a variety of open source projects including:
+Dounm
 
-* [Cobra](https://github.com/spf13/cobra)
-* [Viper](https://github.com/spf13/viper)
-* [J Walter Weatherman](https://github.com/spf13/jWalterWeatherman)
-* [Cast](https://github.com/spf13/cast)
+现居北京~
 
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
+深度学习框架开发中~ && 元认知探索中~
+
+---
+
+邮箱：niuchong893184@gmail.com
+
+Github：[https://github.com/dounm](https://github.com/dounm)
+
+个人博客：[https://dounm.github.io/](https://dounm.github.io/)
 
