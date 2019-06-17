@@ -131,10 +131,16 @@ void DfsTopoGraphTraversal(
 }
 
 // TopoDfs
-void GraphTraversal2(const Graph& graph, std::function<bool(Node*)> IsFatherNodeSatisfied,
+void GraphTraversal2(const Graph& graph, 
+    std::function<bool(Node*)> IsCurNodeStartNode,
     std::function<bool(Node*)> IsCurNodeSatisfied,
+    std::function<bool(Node*)> IsFatherNodeSatisfied,
     std::function<void(Node*)> NodeHandler) {
   std::function<void(Node*)> HandlerWithCondition = [](Node* node) {
+    if (IsCurNodeStartNode(node)) { 
+      NodeHandler(node);
+      return;
+    }
     if (IsCurNodeSatisfied(node)) {
       bool is_one_father_of_node_satisfied = false;
       node->ForEachNodeOnInEdge([&](Node* father_node) {
@@ -151,7 +157,9 @@ void GraphTraversal2(const Graph& graph, std::function<bool(Node*)> IsFatherNode
 
 ### 2.2 代码解析
 
-思路二的代码中，其实也蕴含了两个判断条件：
+思路二的代码中，其实也蕴含了三个判断条件：
+
+- `IsCurNodeStartNode()`: 当前节点是否是遍历的起始节点
 
 - `IsCurNodeSatisfied()`：当前节点是否满足被标记的条件
 
@@ -165,21 +173,22 @@ void GraphTraversal2(const Graph& graph, std::function<bool(Node*)> IsFatherNode
 - $B$条件：`IsNodeTraversable()`
 - $C$条件：DFS被遍历节点的父节点满足`IsStartNode() || IsNodeTraversable()`
 
-而思路二有两个条件：
+而思路二也有三个条件：
 
-- $D$条件：`IsCurNodeSatisfied()`
+- $D$条件：`IsCurNodeStartNode()`
 
-- $E$条件：`IsFatherNodeSatisfied()`
+- $E$条件：`IsCurNodeSatisfied()`
+- $F$条件：`IsFatherNodeSatisfied()`
 
 
 
 仔细对比思路一二，可得
 
-1. $B$ 和 $D$ 条件都是对当前被遍历到的节点是否满足被标记条件的描述，所以在描述能力上 $B=D​$
-2. $C$ 和 $E$ 条件都是描述当前被遍历节点的父节点所需满足的条件的，所以描述能力上，同样有 $C=E$
-3. 而对于 $A$ 条件来说，其被蕴含在了 $C$ 条件中，而又因为描述能力上 $C=E$，所以 $A$ 也被蕴含在 $E$ 中。
+1. $A​$ 和 $D​$ 都是对遍历起始节点的描述，因此描述能力上 $A=D​$
+2. $B$ 和 $E$ 条件都是对当前被遍历到的节点是否满足被标记条件的描述，所以在描述能力上 $B=E$
+3. $C$ 和 $F$ 条件都是描述当前被遍历节点的父节点所需满足的条件的，所以描述能力上，同样有 $C=F$
 
-所以，思路二的两个条件足以表达思路一的三个条件，再考虑到有了Topo序就无需临时变量`visited`来跳过重复遍历的节点，所以思路二更优。
+所以，思路一和思路二是等价的。
 
 
 
